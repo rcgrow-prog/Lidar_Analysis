@@ -1,7 +1,13 @@
+'''
+Script created by Robert Grow 4/2025
+
+This Python script automates the extraction of vegetation points from a LAS (LiDAR) dataset and generates a Digital Surface Model (DSM) raster using ArcPy, the Python library for ArcGIS Pro.
+'''
+
 import arcpy
 
 def make_vegetation_las_layer(input_las, output_las_layer, point_filters, return_values):
-    """Create a vegetation LAS dataset layer with specified filters."""
+    # Create a vegetation LAS dataset layer with specified filters.
     arcpy.management.MakeLasDatasetLayer(
         input_las,
         output_las_layer,
@@ -17,7 +23,7 @@ def make_vegetation_las_layer(input_las, output_las_layer, point_filters, return
     arcpy.AddMessage(f"Vegetation LAS Dataset Created at: {output_las_layer}")
 
 def create_dsm_from_las(las_layer, out_dsm):
-    """Create a DSM raster from a LAS dataset layer."""
+    # Create a DSM raster from a LAS dataset layer
     arcpy.conversion.LasDatasetToRaster(
         las_layer,
         out_dsm,

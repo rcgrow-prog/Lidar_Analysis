@@ -34,6 +34,7 @@ Step 1:
 Step 2: 
 
     Purpose:
+        
         This Python script automates the creation of Digital Elevation Models (DEM) and Digital Surface Models (DSM) from LAS (LiDAR) data using ArcPy, the Python package for ArcGIS.
 
     Main Steps:
@@ -80,6 +81,48 @@ Step 2:
 
     Intended Use:
         This script is ideal for GIS professionals working with LiDAR data who need to quickly extract ground and vegetation surfaces and convert them into raster elevation models for further analysis or mapping.
+
+Step 2.1
+
+    Purpose:
+        
+        This Python script automates the extraction of vegetation points from a LAS (LiDAR) dataset and generates a Digital Surface Model (DSM) raster using ArcPy, the Python library for ArcGIS.
+
+    Main Steps:
+
+        1. Create a Vegetation LAS Dataset Layer:
+
+            Filters the input LAS file to include only points with specific classification codes related to vegetation and other relevant features (e.g., codes 0, 1, 3, 4, 5, 6, 11, 17, 19, 21).
+
+            Applies a set of return value filters to further refine the selection.
+
+            Produces a new LAS dataset layer containing only the filtered points.
+
+        2. Generate a DSM Raster:
+
+            Converts the filtered vegetation LAS dataset layer into a DSM raster using the "BINNING MAXIMUM LINEAR" method, which captures the highest elevation values in each cell (representing the top of vegetation and other features).
+
+            The output is a floating-point raster with a cell size of 1 unit.
+
+    User Inputs:
+
+        Input LAS file path
+
+        Output vegetation LAS dataset layer path
+
+        Output DSM raster path
+
+    Workflow Overview:
+
+        The script is intended for use as a tool in ArcGIS, where users supply the required input and output paths.
+
+        It enables overwriting of outputs by default.
+
+        Informative messages are provided to the user after each major processing step.
+
+    Intended Use:
+
+        This script is ideal for GIS professionals or researchers who need to quickly extract vegetation surfaces from LiDAR data and create DSMs for further analysis, visualization, or mapping.
 
 Step 3:
 
