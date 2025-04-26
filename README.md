@@ -255,6 +255,71 @@ Step 4:
 
 Step 5:
 
+    Purpose: 
+
+        This Python script automates the calculation of a wide range of remote sensing vegetation and soil indices from multispectral raster bands using ArcPy and the ArcGIS Spatial Analyst extension. It is designed for advanced vegetation and land surface analysis in GIS.
+
+    Main Steps & Functionality
+
+        1. Extension Management:
+
+            Checks out the Spatial Analyst extension at the start and checks it back in at the end, ensuring all required tools are available and system resources are managed properly.
+
+        2. User Inputs:
+
+            The script takes user-supplied paths for:
+
+                Four individual raster bands (Red, Green, Blue, and Near-Infrared)
+
+                An NDVI raster
+
+                The workspace directory for outputs
+
+        3. Band Normalization:
+
+            Each input band is converted to a floating-point raster and normalized to a 0–1 scale for consistent index calculation.
+
+        4. Vegetation and Soil Index Calculations:
+    
+            The script calculates and saves the following indices:
+
+                EVI (Enhanced Vegetation Index)
+
+                MSAVI and MSAVI2 (Modified Soil Adjusted Vegetation Indices)
+
+                CLG (Chlorophyll Index - Green)
+
+                GNDVI (Green Normalized Difference Vegetation Index)
+
+                Iron Oxide Ratio
+
+                MTVI2 (Modified Triangular Vegetation Index)
+
+                NDWI (Normalized Difference Water Index)
+
+                SR (Simple Ratio)
+
+                VARI (Visible Atmospherically Resistant Index)
+
+                EVI-NDVI Difference: Compares EVI and NDVI values pixel by pixel
+
+        5. Reclassification:
+
+            EVI Reclassification: Classifies EVI values into discrete vegetation health classes.
+
+            NDVI Reclassification: Creates a field boundary raster showing crop presence or absence.
+
+        6. Output Management:
+
+            All outputs are saved in the specified workspace with clear, descriptive filenames.
+
+            Informative messages are provided to the user after each major processing step.
+
+    Intended Use: 
+
+        Audience: GIS professionals, remote sensing analysts, and researchers working with multispectral imagery for land cover, vegetation health, and soil analysis.
+
+        Applications: Agriculture, forestry, environmental monitoring, and land management.
 
 Step 6:
 

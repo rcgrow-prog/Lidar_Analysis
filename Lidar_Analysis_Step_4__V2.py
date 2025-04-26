@@ -71,10 +71,10 @@ def main():
     Zonal_Table_Text = f"{Workspace}\\NDVI_Zonal_Table"
 
     # Extract bands as raster layers
-    extract_raster_band(Band_1_Input, Band_1_Output, 1) # Band 1 (e.g., Blue)
-    extract_raster_band(Band_1_Input, Band_2_Output, 2) # Band 2 (e.g., Green)
-    extract_raster_band(Band_1_Input, Band_3_Output, 3) # Band 3 (e.g., Red)
-    extract_raster_band(Band_1_Input, Band_4_Output, 4) # Band 4 (e.g., NIR)
+    extract_raster_band(Band_1_Input, Band_1_Output, 1) # Band 1 (Red)
+    extract_raster_band(Band_1_Input, Band_2_Output, 2) # Band 2 (Green)
+    extract_raster_band(Band_1_Input, Band_3_Output, 3) # Band 3 (blue)
+    extract_raster_band(Band_1_Input, Band_4_Output, 4) # Band 4 (NIR)
 
     # Calculate NDVI (using Red and NIR bands)
     calculate_ndvi(Band_3_Output, Band_4_Output, NDVI_Output)
