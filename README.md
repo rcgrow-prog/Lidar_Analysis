@@ -323,6 +323,73 @@ Step 5:
 
 Step 6:
 
+    Purpose:
+
+        This Python script automates the analysis of canopy structure, irrigation efficiency, obstacles, and equipment suitability in agricultural or forestry fields using ArcPy and the ArcGIS Spatial Analyst extension. It processes DSM, DEM, slope, and NDVI rasters to generate a suite of management and planning layers.
+
+    Main Steps & Functionality
+
+        1. Extension Management:
+
+            The script checks out the Spatial Analyst extension at the start and checks it back in at the end, ensuring all required raster tools are available.
+
+        2. User Inputs:
+
+            The script takes user-supplied paths for:
+
+                DSM (Digital Surface Model) raster
+
+                DEM (Digital Elevation Model) raster
+
+                Slope raster
+
+                Workspace directory for outputs
+
+                NDVI raster
+
+                NDVI field boundary raster
+
+        3. Canopy Height Calculation:
+
+            Computes canopy height by subtracting the DEM from the DSM, producing a raster that represents the height of vegetation or structures above ground.
+
+        4. Canopy Cover Classification:
+
+            Reclassifies the canopy height raster into discrete classes, representing different vegetation heights and canopy cover types.
+
+        5. Obstacle Mapping:
+
+            Reclassifies the canopy height raster to identify and map obstacles for equipment (e.g., low vegetation, medium obstacles, tall obstacles).
+
+        6. Irrigation Efficiency Analysis:
+
+            Calculates an irrigation efficiency raster using NDVI, slope, and canopy height, reflecting how terrain and vegetation affect irrigation potential.
+
+            Reclassifies this raster into efficiency categories.
+
+        7. Tree Canopy Polygon Extraction:
+
+            Converts the highest canopy cover class (e.g., trees) into a polygon feature, which can be used for further spatial analysis or exclusion.
+
+        8. NDVI Exclusion Analysis:
+
+            Extracts NDVI values for field boundaries while excluding the tree canopy areas, enabling analysis of crop health outside of tree zones.
+
+        9. Equipment Steepness Mapping:
+
+            Reclassifies the slope raster into categories representing suitability for equipment operation based on steepness.
+
+        10. Output Management:
+
+            All outputs are saved in the specified workspace with clear, descriptive filenames.
+
+            Informative messages are provided after each major processing step.
+
+    Intended Use: 
+
+        Audience: GIS professionals, agronomists, foresters, and land managers.
+
+        Applications: Precision agriculture, forestry management, field equipment planning, irrigation design, and obstacle mapping.
 
 Step 7:
 
