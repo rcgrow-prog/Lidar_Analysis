@@ -5,7 +5,7 @@ Step 1:
     
     Purpose:
     
-        This Python script, written by Robert Grow in April 2025, automates the processing of LAS (LiDAR point cloud) files using ArcPy, a Python site package for ESRI’s ArcGIS.
+        This Python script, written by Robert Grow in April 2025, automates the processing of LAS (LiDAR point cloud) files using ArcPy, a Python site package for ESRI’s ArcGIS Pro.
 
     Main Steps:
 
@@ -35,7 +35,7 @@ Step 2:
 
     Purpose:
         
-        This Python script automates the creation of Digital Elevation Models (DEM) and Digital Surface Models (DSM) from LAS (LiDAR) data using ArcPy, the Python package for ArcGIS.
+        This Python script automates the creation of Digital Elevation Models (DEM) and Digital Surface Models (DSM) from LAS (LiDAR) data using ArcPy, the Python package for ArcGIS Pro.
 
     Main Steps:
 
@@ -86,7 +86,7 @@ Step 2.1
 
     Purpose:
         
-        This Python script automates the extraction of vegetation points from a LAS (LiDAR) dataset and generates a Digital Surface Model (DSM) raster using ArcPy, the Python library for ArcGIS.
+        This Python script automates the extraction of vegetation points from a LAS (LiDAR) dataset and generates a Digital Surface Model (DSM) raster using ArcPy, the Python library for ArcGIS Pro.
 
     Main Steps:
 
@@ -126,6 +126,65 @@ Step 2.1
 
 Step 3:
 
+    Purpose:
+
+        This Python script automates the generation of a comprehensive suite of terrain analysis products from both a Digital Elevation Model (DEM) and a Digital Surface Model (DSM) using ArcPy in ArcGIS Pro.
+
+    Main Steps:
+
+        1. User Inputs:
+
+            The script takes three user-supplied inputs:
+
+                A DEM raster file
+
+                A DSM raster file
+
+                An output workspace folder
+
+        2. Terrain Analysis Products Generated:
+        
+        For both the DEM and DSM, the script creates the following raster products:
+
+            Hillshade: Simulates sunlight and shadows for terrain visualization.
+
+            Slope (Degree and Percent Rise): Calculates the steepness of the terrain in degrees and as a percentage.
+
+            Aspect: Determines the compass direction that slopes face.
+
+            Curvature Surfaces:
+
+                Mean Curvature
+
+                Profile Curvature
+
+                Tangential Curvature
+
+                Plan (Contour) Curvature
+
+                Gaussian Curvature
+
+            Casorati Curvature
+
+        3. How It Works:
+
+            The script is organized into functions for modularity and clarity:
+
+                calculate_hillshade() computes hillshade rasters.
+
+                calculate_surface_parameters() computes various surface parameters (slope, aspect, curvatures).
+
+                process_dem_products() runs all analyses for a given raster (DEM or DSM) and names outputs with a prefix.
+
+                main() handles input, workspace setup, and calls the processing functions for both DEM and DSM.
+
+            All output rasters are saved in the specified workspace with clear, descriptive filenames.
+
+    Intended Use:
+
+        Designed for GIS professionals or researchers who need to quickly and consistently generate multiple terrain analysis products from elevation data.
+
+        Streamlines repetitive tasks and ensures consistent output naming and processing.
 
 Step 4:
 
