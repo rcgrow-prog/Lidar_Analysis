@@ -188,6 +188,70 @@ Step 3:
 
 Step 4:
 
+    Purpose:
+
+        This Python script automates the extraction of spectral bands, NDVI calculation, NDVI reclassification, and zonal statistics table generation from a multiband raster image using ArcPy and ArcGIS Spatial Analyst.
+
+    Main Steps:
+
+        1. User Inputs:
+        The script takes user-supplied parameters for:
+
+            Multiband raster input
+
+            Output paths for individual band layers (Bands 1–4)
+
+            Workspace directory
+
+            Crop boundary feature class and the field for zonal statistics
+
+        2. Band Extraction:
+
+            Extracts four individual bands from the input raster and saves them as separate raster layers.
+
+            Typical bands:
+
+                Band 1: Blue
+
+                Band 2: Green
+
+                Band 3: Red
+
+                Band 4: Near-Infrared (NIR)
+
+        3. NDVI Calculation:
+
+            Computes the Normalized Difference Vegetation Index (NDVI) using the Red and NIR bands:
+
+            NDVI = (NIR - Red) / (NIR + Red)
+
+            Saves the NDVI raster to the workspace.
+
+        4. NDVI Reclassification:
+
+            Reclassifies the NDVI raster into discrete vegetation health classes (low, medium, high, etc.) based on NDVI value ranges.
+
+            Saves the reclassified raster.
+
+        5. Zonal Statistics Table:
+
+            Computes zonal statistics for NDVI values within each crop boundary zone, summarizing NDVI statistics per field or plot.
+
+            Outputs the results as a table.
+
+    Workflow Overview: 
+        
+        The script is modular, with each major processing step encapsulated in a function.
+
+        The main() function orchestrates the workflow: setting up the workspace, extracting bands, calculating NDVI, reclassifying NDVI, and generating zonal statistics.
+
+        Output files are clearly named and saved in the specified workspace.
+
+        Informative messages are provided throughout for user feedback.
+
+    Intended Use:
+
+        This script is ideal for GIS professionals and remote sensing analysts who need to efficiently process multispectral imagery for vegetation analysis, particularly in agricultural or environmental monitoring applications.
 
 Step 5:
 
