@@ -7,7 +7,7 @@ Step 1:
     
         This Python script, written by Robert Grow in April 2025, automates the processing of LAS (LiDAR point cloud) files using ArcPy, a Python site package for ESRI’s ArcGIS Pro.
 
-    Main Steps:
+    Main Steps and Functionality:
 
         1. Convert LAS Files:
             Converts input LAS files to a specified projection and output location using the arcpy.conversion.ConvertLas tool.
@@ -37,7 +37,7 @@ Step 2:
         
         This Python script automates the creation of Digital Elevation Models (DEM) and Digital Surface Models (DSM) from LAS (LiDAR) data using ArcPy, the Python package for ArcGIS Pro.
 
-    Main Steps:
+    Main Steps and Functionality:
 
         1. Create LAS Dataset Layers with Filters:
 
@@ -88,7 +88,7 @@ Step 2.1
         
         This Python script automates the extraction of vegetation points from a LAS (LiDAR) dataset and generates a Digital Surface Model (DSM) raster using ArcPy, the Python library for ArcGIS Pro.
 
-    Main Steps:
+    Main Steps and Functionality::
 
         1. Create a Vegetation LAS Dataset Layer:
 
@@ -130,7 +130,7 @@ Step 3:
 
         This Python script automates the generation of a comprehensive suite of terrain analysis products from both a Digital Elevation Model (DEM) and a Digital Surface Model (DSM) using ArcPy in ArcGIS Pro.
 
-    Main Steps:
+    Main Steps and Functionality:
 
         1. User Inputs:
 
@@ -192,7 +192,7 @@ Step 4:
 
         This Python script automates the extraction of spectral bands, NDVI calculation, NDVI reclassification, and zonal statistics table generation from a multiband raster image using ArcPy and ArcGIS Spatial Analyst.
 
-    Main Steps:
+    Main Steps and Functionality:
 
         1. User Inputs:
         The script takes user-supplied parameters for:
@@ -259,7 +259,7 @@ Step 5:
 
         This Python script automates the calculation of a wide range of remote sensing vegetation and soil indices from multispectral raster bands using ArcPy and the ArcGIS Spatial Analyst extension. It is designed for advanced vegetation and land surface analysis in GIS.
 
-    Main Steps & Functionality
+    Main Steps & Functionality:
 
         1. Extension Management:
 
@@ -327,7 +327,7 @@ Step 6:
 
         This Python script automates the analysis of canopy structure, irrigation efficiency, obstacles, and equipment suitability in agricultural or forestry fields using ArcPy and the ArcGIS Spatial Analyst extension. It processes DSM, DEM, slope, and NDVI rasters to generate a suite of management and planning layers.
 
-    Main Steps & Functionality
+    Main Steps & Functionality: 
 
         1. Extension Management:
 
@@ -393,5 +393,58 @@ Step 6:
 
 Step 7:
 
+    Purpose:
+
+        This Python script automates a standard hydrologic terrain analysis workflow using ArcPy and the ArcGIS Spatial Analyst extension. It processes a Digital Elevation Model (DEM) to generate filled elevation, flow direction, flow accumulation, and stream order rasters using both D8 and DINF flow algorithms.
+
+    Main Steps & Functionality:
+
+        1. Extension Management:
+
+            The script checks out the Spatial Analyst extension at the start and checks it back in at the end to ensure all spatial tools are available and properly released.
+
+        2. User Inputs:
+
+            The script takes user-supplied paths for:
+
+            Input DEM raster
+
+            Output path for the filled DEM
+
+            Output workspace directory
+
+        3. DEM Filling:
+
+            Fills sinks in the input DEM to remove imperfections and ensure continuous flow for hydrologic modeling.
+
+        4. Flow Direction Calculation:
+
+            Computes flow direction rasters using both the D8 (eight-direction pour point) and DINF (multiple flow direction) algorithms.
+
+            Drop rasters are also created as byproducts.
+
+        5. Flow Accumulation Calculation:
+
+            Calculates flow accumulation rasters for both D8 and DINF flow direction rasters, indicating the number of upstream cells that flow into each cell.
+
+        6. Flow Accumulation Reclassification:
+
+            Reclassifies flow accumulation rasters into three stream classes based on accumulation thresholds (low, medium, high).
+
+        7. Stream Order Calculation:
+
+            Computes Strahler stream order rasters for both D8 and DINF, assigning hierarchical order to streams based on their tributaries.
+
+        8. Output Management:
+
+            All outputs are saved in the specified workspace with clear, descriptive filenames.
+
+            Informative messages are provided after each major processing step for user feedback.
+
+    Intended Use
+        
+        Audience: GIS professionals, hydrologists, watershed managers, and researchers.
+
+        Applications: Watershed delineation, stream network extraction, flood modeling, and hydrological analysis.
 
 Step 8:
