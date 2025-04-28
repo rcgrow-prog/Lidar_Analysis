@@ -1,19 +1,21 @@
 '''
-Script created by Robert Grow 4/2025
+Step 1 - Process LiDAR point clouds
+------------------------
+Script created by Robert Grow, April 2025
 
-This Python script, automates the processing of LAS (LiDAR point cloud) files using ArcPy, a Python site package for ESRI ArcGIS Pro.
+This script automates the processing of LAS (LiDAR point cloud) files using ArcPy for ESRI ArcGIS Pro.
+It handles LAS file conversion, statistics computation, and raster generation.
 '''
-# Import libraries: 
 
+import os
 import arcpy
 
+def log_message(message):
+    # Log a message to ArcGIS
+    arcpy.AddMessage(message)
 
 def convert_las(input_las, target_folder, output_las, projection):
-    # Converts LAS files to a specified projection and output location.
-    # - input_las: Path to the input LAS file(s)
-    # - target_folder: Folder where converted LAS files will be placed
-    # - output_las: Name for the output LAS dataset
-    # - projection: Spatial reference for the output LAS
+    # Convert LAS files to a specified projection and output location
     arcpy.conversion.ConvertLas(
         input_las,
         target_folder,
@@ -25,11 +27,10 @@ def convert_las(input_las, target_folder, output_las, projection):
         "ALL_FILES",
         projection
     )
+    log_message(f"LAS files converted and saved to {target_folder}")
 
 def compute_las_statistics(output_las, stats_text):
-    # Computes statistics for the LAS dataset and writes them to a text file.
-    # - output_las: The LAS dataset to analyze
-    # - stats_text: Path to the output statistics text file
+    # Compute statistics for the LAS dataset and write them to a text file
     arcpy.management.LasDatasetStatistics(
         output_las,
         "OVERWRITE_EXISTING_STATS",
@@ -38,47 +39,54 @@ def compute_las_statistics(output_las, stats_text):
         "COMMA",
         "DECIMAL_POINT"
     )
+    log_message(f"LAS statistics saved to {stats_text}")
 
 def create_las_rasters(output_las, workspace):
-    # Creates raster datasets from the LAS file for various statistics.
-    # - output_las: The LAS dataset to analyze
-    # - workspace: Folder where rasters will be saved
+    # Create raster datasets from the LAS file for various statistics
     rasters = [
-        ("LAS_Pulse_Count", "PULSE_COUNT"), # Number of pulses per cell
-        ("LAS_Point_Count", "POINT_COUNT"), # Number of points per cell
+        ("LAS_Pulse_Count", "PULSE_COUNT"),
+        ("LAS_Point_Count", "POINT_COUNT"),
         ("LAS_Most_Frequent_Last_Return", "PREDOMINANT_LAST_RETURN"),
-        ("Most_Frequent_Class_Code", "PREDOMINANT_CLASS"), 
+        ("Most_Frequent_Class_Code", "PREDOMINANT_CLASS"),
         ("LAS_Range_Of_Intensity_Values", "INTENSITY_RANGE"),
         ("LAS_Range_Of_Elevation_Values", "Z_RANGE"),
     ]
+
     for raster_name, stat_type in rasters:
-        out_raster = f"{workspace}\\{raster_name}" # Construct output raster path
+        out_raster = os.path.join(workspace, raster_name)
         arcpy.management.LasPointStatsAsRaster(
             output_las,
             out_raster,
             stat_type,
             "CELLSIZE",
-            1 # Cell size value (1 unit)
+            1  # Cell size value (1 unit)
         )
+        log_message(f"Raster {raster_name} created at {out_raster}")
 
 def main():
-    # Set overwrite to True
-    arcpy.env.overwriteOutput = True
+    try:
+        arcpy.env.overwriteOutput = True
 
-    # Get parameters from user
-    input_las = arcpy.GetParameterAsText(0)
-    target_folder = arcpy.GetParameterAsText(1)
-    output_las = arcpy.GetParameterAsText(2)
-    projection = arcpy.GetParameterAsText(3)
-    stats_text = arcpy.GetParameterAsText(4)
-    workspace = arcpy.GetParameterAsText(5)
-    arcpy.env.workspace = workspace
+        # Get parameters from user
+        input_las = arcpy.GetParameterAsText(0)
+        target_folder = arcpy.GetParameterAsText(1)
+        output_las = arcpy.GetParameterAsText(2)
+        projection = arcpy.GetParameterAsText(3)
+        stats_text = arcpy.GetParameterAsText(4)
+        workspace = arcpy.GetParameterAsText(5)
 
-    # Run processing steps
-    convert_las(input_las, target_folder, output_las, projection)
-    compute_las_statistics(output_las, stats_text)
-    create_las_rasters(output_las, workspace)
-    arcpy.AddMessage("All processing complete.")
+        arcpy.env.workspace = workspace
+
+        # Run processing steps
+        convert_las(input_las, target_folder, output_las, projection)
+        compute_las_statistics(output_las, stats_text)
+        create_las_rasters(output_las, workspace)
+
+        log_message("All processing complete.")
+
+    except Exception as e:
+        arcpy.AddError(f"Error: {e}")
+        raise
 
 if __name__ == "__main__":
     main()

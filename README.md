@@ -448,3 +448,59 @@ Step 7:
         Applications: Watershed delineation, stream network extraction, flood modeling, and hydrological analysis.
 
 Step 8:
+
+    Purpose: 
+
+        This script automates the calculation of a soil composition index raster by combining three input rasters-slope, flow accumulation, and curvature-using specified weights. It is designed for use in ArcGIS Pro with the ArcPy and Spatial Analyst extension, enabling efficient and repeatable soil suitability or composition analysis for environmental, agricultural, or land management applications.
+
+    Main Steps & Functionality: 
+
+        1. Environment and Extension Setup
+
+            Checks out the Spatial Analyst extension required for raster processing.
+
+            Sets the workspace and enables output overwriting.
+
+        2. Parameter Collection: 
+
+            Receives user-supplied paths for the slope, flow accumulation, and curvature rasters, as well as an output workspace.
+
+        3. Soil Composition Calculation:
+
+            Converts input rasters to floating-point format for precise calculations.
+
+            Computes the soil composition index as a weighted sum:
+
+                Slope: 40%
+
+                Flow Accumulation: 30%
+
+                Curvature: 30%
+
+            Saves the resulting raster to the specified output location.
+
+        4. Logging and Error Handling:
+
+            Provides user feedback at each step via ArcGIS messages.
+
+            Handles and reports errors gracefully.
+
+            Ensures the Spatial Analyst extension is checked in after execution.
+
+    Intended Use
+    
+        Target Users: GIS analysts, soil scientists, environmental consultants, or land managers working in ArcGIS Pro.
+
+        Applications:
+
+            Soil suitability mapping
+
+            Land capability analysis
+
+            Environmental impact studies
+
+            Precision agriculture and land management planning
+
+        Workflow Integration:
+
+            Can be used as a standalone ArcGIS script tool or integrated into larger geoprocessing models.
