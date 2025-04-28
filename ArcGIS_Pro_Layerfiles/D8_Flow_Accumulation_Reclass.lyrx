@@ -1,0 +1,170 @@
+{
+  "type" : "CIMLayerDocument",
+  "version" : "3.4.0",
+  "build" : 55405,
+  "layers" : [
+    "CIMPATH=Script_Sample/67e18f793b7146b1bb6a559e76005605.json"
+  ],
+  "layerDefinitions" : [
+    {
+      "type" : "CIMRasterLayer",
+      "name" : "D8_Flow_Accumulation_Reclass",
+      "uRI" : "CIMPATH=Script_Sample/67e18f793b7146b1bb6a559e76005605.json",
+      "sourceModifiedTime" : {
+        "type" : "TimeInstant"
+      },
+      "useSourceMetadata" : true,
+      "description" : "D8_Flow_Accumulation_Reclass",
+      "layerElevation" : {
+        "type" : "CIMLayerElevationSurface",
+        "elevationSurfaceLayerURI" : "CIMPATH=Map1/84ab53404fb642b8a59fadd1ba6315bc.json"
+      },
+      "expanded" : true,
+      "layerType" : "Operational",
+      "showLegends" : true,
+      "visibility" : true,
+      "displayCacheType" : "Permanent",
+      "maxDisplayCacheAge" : 5,
+      "showPopups" : true,
+      "serviceLayerID" : -1,
+      "refreshRate" : -1,
+      "refreshRateUnit" : "esriTimeUnitsSeconds",
+      "blendingMode" : "Alpha",
+      "allowDrapingOnIntegratedMesh" : true,
+      "dataConnection" : {
+        "type" : "CIMStandardDataConnection",
+        "workspaceConnectionString" : "DATABASE=..\\Data\\Kurts_Area.gdb",
+        "workspaceFactory" : "FileGDB",
+        "dataset" : "D8_Flow_Accumulation_Reclass",
+        "datasetType" : "esriDTRasterDataset"
+      },
+      "colorizer" : {
+        "type" : "CIMRasterUniqueValueColorizer",
+        "resamplingType" : "NearestNeighbor",
+        "defaultColor" : {
+          "type" : "CIMRGBColor",
+          "values" : [
+            0,
+            0,
+            0,
+            100
+          ]
+        },
+        "fieldName" : "Value",
+        "groups" : [
+          {
+            "type" : "CIMRasterUniqueValueGroup",
+            "classes" : [
+              {
+                "type" : "CIMRasterUniqueValueClass",
+                "values" : [
+                  "1"
+                ],
+                "label" : "No Stream Network",
+                "color" : {
+                  "type" : "CIMRGBColor",
+                  "values" : [
+                    220.30000000000001,
+                    113.76000000000001,
+                    206.78999999999999,
+                    0
+                  ]
+                }
+              },
+              {
+                "type" : "CIMRasterUniqueValueClass",
+                "values" : [
+                  "2"
+                ],
+                "label" : "Small Stream Network",
+                "color" : {
+                  "type" : "CIMRGBColor",
+                  "values" : [
+                    130.13,
+                    239.06,
+                    84.409999999999997,
+                    100
+                  ]
+                }
+              },
+              {
+                "type" : "CIMRasterUniqueValueClass",
+                "values" : [
+                  "3"
+                ],
+                "label" : "Main Stream Network",
+                "color" : {
+                  "type" : "CIMRGBColor",
+                  "values" : [
+                    74.840000000000003,
+                    200.59,
+                    216.53999999999999,
+                    100
+                  ]
+                }
+              }
+            ],
+            "heading" : "Value"
+          }
+        ],
+        "colorRamp" : {
+          "type" : "CIMRandomHSVColorRamp",
+          "colorSpace" : {
+            "type" : "CIMICCColorSpace",
+            "url" : "Default RGB"
+          },
+          "maxH" : 360,
+          "minS" : 33,
+          "maxS" : 66,
+          "minV" : 50,
+          "maxV" : 99,
+          "minAlpha" : 100,
+          "maxAlpha" : 100
+        }
+      },
+      "attributeTable" : {
+        "type" : "CIMRasterTable",
+        "displayField" : "Value",
+        "editable" : true
+      }
+    }
+  ],
+  "rGBColorProfile" : "sRGB IEC61966-2.1",
+  "cMYKColorProfile" : "U.S. Web Coated (SWOP) v2",
+  "elevationSurfaceLayerDefinitions" : [
+    {
+      "type" : "CIMElevationSurfaceLayer",
+      "name" : "Ground",
+      "uRI" : "CIMPATH=Map1/84ab53404fb642b8a59fadd1ba6315bc.json",
+      "sourceModifiedTime" : {
+        "type" : "TimeInstant"
+      },
+      "useSourceMetadata" : true,
+      "description" : "Ground",
+      "expanded" : true,
+      "layerType" : "Operational",
+      "showLegends" : false,
+      "visibility" : true,
+      "displayCacheType" : "Permanent",
+      "maxDisplayCacheAge" : 5,
+      "showPopups" : true,
+      "serviceLayerID" : -1,
+      "refreshRate" : -1,
+      "refreshRateUnit" : "esriTimeUnitsSeconds",
+      "blendingMode" : "Alpha",
+      "allowDrapingOnIntegratedMesh" : true,
+      "elevationMode" : "BaseGlobeSurface",
+      "verticalExaggeration" : 1,
+      "color" : {
+        "type" : "CIMRGBColor",
+        "values" : [
+          255,
+          255,
+          255,
+          100
+        ]
+      },
+      "surfaceTINShadingMode" : "Smooth"
+    }
+  ]
+}
