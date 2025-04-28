@@ -3,7 +3,8 @@ Step 3 - Terrain Analysis Product Generation Script
 ----------------------------------------------------
 Script created by Robert Grow 4/2025
 
-Automates the generation of a suite of terrain analysis products from a DEM and DSM using ArcPy in ArcGIS Pro.
+Automates the generation of a suite of terrain analysis products from a DEM and DSM 
+using ArcPy in ArcGIS Pro.
 '''
 
 import os

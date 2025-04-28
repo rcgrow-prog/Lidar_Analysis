@@ -5,7 +5,7 @@ Step 1:
     
     Purpose:
     
-        This Python script, written by Robert Grow in April 2025, automates the processing of LAS (LiDAR point cloud) files using ArcPy, a Python site package for ESRI’s ArcGIS Pro.
+        This Python script automates the processing of LAS (LiDAR point cloud) files using ArcPy, a Python site package for ESRI’s ArcGIS Pro.
 
     Main Steps and Functionality:
 
