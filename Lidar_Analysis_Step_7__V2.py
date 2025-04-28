@@ -111,7 +111,7 @@ def main():
 
         # Calculate stream orders
         calculate_stream_order(d8_accum_reclass, d8_flow, flow_dir_prefix, "D8")
-        calculate_stream_order(dinf_accum_reclass, dinf_flow, flow_dir_prefix, "DINF")
+        calculate_stream_order(dinf_accum_reclass, d8_flow, flow_dir_prefix, "DINF")
 
         log_message("Hydrologic terrain analysis complete.")
 
