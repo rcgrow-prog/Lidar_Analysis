@@ -49,17 +49,36 @@ def calculate_canopy_height(dsm_input, dem_input, output_path):
 def reclassify_canopy_height(canopy_height_raster, output_path):
     # Reclassify canopy height to create canopy cover raster
     reclass_rules = (
-        "-200 0 0;"
-        "0 0.1 1;"
-        "0.1 0.3 2;"
-        "0.3 0.5 3;"
-        "0.5 0.7 4;"
-        "0.7 300 5"
+        "-200 3 0;"
+        "3 300 1"
     )
     reclass_raster = Reclassify(canopy_height_raster, "VALUE", reclass_rules, "DATA")
     reclass_raster.save(output_path)
-    log_message(f"Canopy cover raster saved to {output_path}")
+    log_message(f"Canopy height reclass raster saved to {output_path}")
     return output_path
+
+import arcpy
+from arcpy.sa import *
+
+def calculate_canopy_cover(chm_raster, threshold_meters, output_path):
+    # Create binary canopy mask (1 for canopy, 0 for non-canopy)
+    chm = Float(Raster(chm_raster))
+    canopy_mask = Con(chm > threshold_meters, 1, 0)
+    canopy_mask.save(output_path)
+    
+    # Convert raster to numpy array to calculate pixel sums
+    arr = arcpy.RasterToNumPyArray(canopy_mask, nodata_to_value=0)
+    
+    canopy_pixels = arr.sum()  # sum of pixels with value 1
+    total_pixels = arr.size     # total number of pixels
+    
+    if total_pixels == 0:
+        cover_pct = 0.0
+    else:
+        cover_pct = (canopy_pixels / total_pixels) * 100
+    
+    arcpy.AddMessage(f"Canopy Cover: {cover_pct:.1f}%")
+    return cover_pct
 
 def create_obstacles_layer(canopy_height_raster, output_path):
     # Create an obstacle raster by reclassifying canopy height
@@ -153,7 +172,8 @@ def main():
 
         # Define output paths
         canopy_height_path = os.path.join(workspace, "Canopy_Height")
-        canopy_cover_path = os.path.join(workspace, "Canopy_Cover")
+        reclass_canopy_height = os.path.join(workspace, "Canopy_Height_Reclass")
+        canopy_cover = os.path.join(workspace, "Canopy_Cover")
         irrigation_efficiency_path = os.path.join(workspace, "Irrigation_Efficiency")
         irrigation_eff_reclass_path = os.path.join(workspace, "Irrigation_Efficiency_Reclass")
         canopy_cover_polygon_path = os.path.join(workspace, "Canopy_Cover_Trees_Polygon")
@@ -163,7 +183,8 @@ def main():
 
         # Processing steps
         canopy_height = calculate_canopy_height(dsm_input, dem_input, canopy_height_path)
-        canopy_cover = reclassify_canopy_height(canopy_height, canopy_cover_path)
+        canopy_height_reclass = reclassify_canopy_height(canopy_height, reclass_canopy_height)
+        cover_pct = calculate_canopy_cover(canopy_height, 3, canopy_cover)
         obstacles = create_obstacles_layer(canopy_height, obstacles_reclass_path)
         irrigation_eff = calculate_irrigation_efficiency(ndvi_input, slope_raster, canopy_height, irrigation_efficiency_path)
         irrigation_eff_reclass = reclassify_irrigation_efficiency(irrigation_eff, irrigation_eff_reclass_path)
