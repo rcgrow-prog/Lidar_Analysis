@@ -124,7 +124,7 @@ def convert_canopy_cover_to_polygon(canopy_cover_raster, output_polygon):
     # Create a raster layer for selection
     raster_layer = "canopy_cover_layer"
     arcpy.management.MakeRasterLayer(canopy_cover_raster, raster_layer)
-    arcpy.management.SelectLayerByAttribute(raster_layer, "NEW_SELECTION", "Value = 5")
+    arcpy.management.SelectLayerByAttribute(raster_layer, "NEW_SELECTION", "Value = 1")
     arcpy.conversion.RasterToPolygon(
         raster_layer,
         output_polygon,
