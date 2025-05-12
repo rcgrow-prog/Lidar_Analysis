@@ -54,7 +54,7 @@ def main():
 
         # Define filters
         return_values = "LAST;FIRST_OF_MANY;LAST_OF_MANY;SINGLE;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15"
-        veg_point_filters = "0;1;3;4;5;6;11;17;19;21"
+        veg_point_filters = "0;1;3;4;5"
 
         # Run variables
         make_vegetation_las_layer(input_las, output_veg_las, veg_point_filters, return_values)
